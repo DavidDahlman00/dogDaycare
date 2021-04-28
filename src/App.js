@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Header from './components/Header';
 import Welcome from './components/Welcome';
 import Register from './components/Register';
@@ -8,15 +7,39 @@ import Dogcard from './components/Dogcard';
 import Footer from './components/Footer';
 import data from './data'
 
+  
+
+
 function App() {
+
   const WELCOME = 'welcome', REGISTER = 'register', INFO = 'info'
   const [currentScreen, setCurrentScreen] = useState(WELCOME);
-
+  
+  const url = "https://api.jsonbin.io/b/6087d57ff6655022c46d0611"
+  const [hasData, setHasData] = useState([]);
+  
+useEffect( ()=>{
+  async function fetchData(){
+    const response =  await fetch(url);
+    const data = await response.json();
+    setHasData(data)
+    console.log(data)
+  } 
+  
+  fetchData();
+  
+},[])
   let content = null;
   let header = null;
+
+ 
 switch(currentScreen) {
   case WELCOME: {
-    content = <Welcome 
+    let picture = null
+    if(hasData.length > 1){
+      picture = [hasData[0].img, hasData[1].img, hasData[2].img, hasData[3].img]
+    }
+    content = <Welcome picture= {picture}
       nextScreen= {() => setCurrentScreen(REGISTER)}
     />
     header = <Header 
@@ -36,8 +59,9 @@ switch(currentScreen) {
  
     break;
     default: {
-      content = <Dogcard name= {data[0].name} img={data[0].img}  
-      sex={data[0].sex} breed={data[0].breed} chipNumber={data[0].chipNumber} />
+      content = hasData.map( info => 
+      <Dogcard name= {info.name} img={info.img}  
+      sex={info.sex} breed={info.breed} chipNumber={info.chipNumber} />)
       header = <Header 
       goBack = {() => setCurrentScreen(REGISTER)}
     />

@@ -3,13 +3,13 @@ import React from "react";
 function Header({goBack}) {
 
     let maybeButton = null;
-    if(goBack!=false){
+    if(goBack!==false){
         maybeButton = <button onClick={goBack}>Back</button>;
-    }
-    return ( <div className="App-header">
+    };
+
+    return  <div className="App-header">
                 Dogg'z DayCare.
                 {maybeButton}
-            </div> )
+            </div> 
 }
-
 export default Header;
