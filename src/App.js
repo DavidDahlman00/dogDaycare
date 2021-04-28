@@ -22,7 +22,7 @@ useEffect( ()=>{
   async function fetchData(){
     const response =  await fetch(url);
     const data = await response.json();
-    setHasData(data)
+    await setHasData(data)
     setWelcomePictures([hasData[randomPictureNumber(hasData)].img, 
         hasData[randomPictureNumber(hasData)].img, 
         hasData[randomPictureNumber(hasData)].img,
