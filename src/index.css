@@ -25,7 +25,7 @@ code {
 .welcomeContent {
   margin-top: 6%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   border: honeydew 1rem solid ;
   border-radius: 2%;
   box-shadow: 2px 2px 4px rgb(197, 197, 238);
@@ -47,4 +47,18 @@ code {
   box-shadow: 2px 2px 4px rgb(81, 81, 97);
   transform: scaleX(-1);
   opacity: 0.8;
+}
+
+@media (min-width: 300px) {
+  .welcomeContent {
+    display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 600px) {
+  .welcomeContent {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  }
 }
