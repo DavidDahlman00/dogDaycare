@@ -23,6 +23,15 @@ useEffect( ()=>{
     const response =  await fetch(url);
     const data = await response.json();
     setHasData(data)
+    setWelcomePictures([hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img,
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img,
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img,
+        hasData[randomPictureNumber(hasData)].img]);
     console.log(data)
   } 
   
@@ -35,10 +44,16 @@ useEffect( ()=>{
   useEffect( ()=>{
     if(hasData.length > 1){
       let intervalId = setInterval(()=> {
-        setWelcomePictures([hasData[randomPictureNumber(hasData)].img, 
-        hasData[randomPictureNumber(hasData)].img, 
-        hasData[randomPictureNumber(hasData)].img, 
-        hasData[randomPictureNumber(hasData)].img]);
+        setWelcomePictures(prevValue =>{
+          return [hasData[randomPictureNumber(hasData)].img, 
+          prevValue[0], 
+          prevValue[1], 
+          prevValue[2], 
+          prevValue[3],
+          prevValue[4], 
+          prevValue[5],
+          prevValue[6],
+          prevValue[7]]});
       }, 2000);
       return () => {
         
@@ -68,9 +83,9 @@ switch(currentScreen) {
 
     break;
     case REGISTER: {
-      content = <Register
-      nextScreen= {() => setCurrentScreen(INFO)}
-      />
+      content = hasData.map( info => <Register name= {info.name} img={info.img}
+        nextScreen= {() => setCurrentScreen(INFO)}
+        />)
     header = <Header 
     goBack = {() => setCurrentScreen(WELCOME)}
     />

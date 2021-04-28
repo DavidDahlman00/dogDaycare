@@ -3,21 +3,20 @@ import React from "react";
 import Dogcard from './Dogcard';
 
 
-function createCard(contact) {
-    return <button onClick={console.log("you clicked me")}>{contact.namn}</button>
-}
 
-function Register({nextScreen}) {
 
-    const test = [{namn : 'hej'}, {namn :'hejsan'}, {namn :'tjena'}]
-
+function Register({name, img, nextScreen}) {
 
     
-    return  <div>
-                REGISTER now
-                <button onClick={nextScreen}>To dog</button>
-                {test.map(createCard)}
-        </div>
+
+
+    //<button onClick={nextScreen}>To dog</button>
+    return  <div className="RegisterCard" >
+    <h2>{name}</h2>
+    <div className="RegisterBody">
+       <img src= {img} alt="dog"/>
+    </div>           
+</div>
 }
 
 export default Register;

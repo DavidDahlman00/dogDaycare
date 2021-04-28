@@ -11,3 +11,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* .welcomeBody {
+  max-width: 500px;
+  max-height: 800px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+} */
+
+.welcomeContent {
+  margin-top: 6%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: honeydew 1rem solid ;
+  border-radius: 2%;
+  box-shadow: 2px 2px 4px rgb(197, 197, 238);
+}
+
+.welcomeContent img {
+  height: 150px;
+  width: 200px;
+  border: honeydew 0.4rem solid ;
+  border-radius: 6%;
+  box-shadow: 2px 2px 4px lavender;
+}
+
+.welcomeContent img:hover{
+  height: 158px;
+  width: 210px;
+  border: honeydew 0.4rem solid ;
+  border-radius: 6%;
+  box-shadow: 2px 2px 4px rgb(81, 81, 97);
+  transform: scaleX(-1);
+  opacity: 0.8;
+}
