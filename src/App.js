@@ -5,7 +5,7 @@ import Welcome from './components/Welcome';
 import Register from './components/Register';
 import Dogcard from './components/Dogcard';
 import Footer from './components/Footer';
-import data from './data'
+
 
   
 
@@ -17,7 +17,7 @@ function App() {
   
   const url = "https://api.jsonbin.io/b/6087d57ff6655022c46d0611"
   const [hasData, setHasData] = useState([]);
-  
+  let [welcomePictures, setWelcomePictures] = useState([]);
 useEffect( ()=>{
   async function fetchData(){
     const response =  await fetch(url);
@@ -32,12 +32,31 @@ useEffect( ()=>{
   let content = null;
   let header = null;
 
+  useEffect( ()=>{
+    if(hasData.length > 1){
+      let intervalId = setInterval(()=> {
+        setWelcomePictures([hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img]);
+      }, 2000);
+      return () => {
+        
+        clearInterval(intervalId);
+      }
+    }
+  }, [2000])
+
+
+function randomPictureNumber(input) {
+  return Math.floor(Math.random() * input.length); 
+}
  
 switch(currentScreen) {
   case WELCOME: {
     let picture = null
     if(hasData.length > 1){
-      picture = [hasData[0].img, hasData[1].img, hasData[2].img, hasData[3].img]
+      picture = welcomePictures
     }
     content = <Welcome picture= {picture}
       nextScreen= {() => setCurrentScreen(REGISTER)}
