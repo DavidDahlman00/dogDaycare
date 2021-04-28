@@ -49,6 +49,23 @@ code {
   opacity: 0.8;
 }
 
+.RegisterContent {
+  margin-top: 6%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border: honeydew 1rem solid ;
+  border-radius: 2%;
+  box-shadow: 2px 2px 4px rgb(197, 197, 238);
+}
+
+.RegisterCard {
+  margin-top: 6%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border: honeydew 1rem solid ;
+  border-radius: 2%;
+  box-shadow: 2px 2px 4px rgb(197, 197, 238);
+}
 @media (min-width: 300px) {
   .welcomeContent {
     display: grid;

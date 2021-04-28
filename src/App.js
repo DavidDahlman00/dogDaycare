@@ -22,29 +22,45 @@ useEffect( ()=>{
   async function fetchData(){
     const response =  await fetch(url);
     const data = await response.json();
-    await setHasData(data)
-    setWelcomePictures([hasData[randomPictureNumber(hasData)].img, 
-        hasData[randomPictureNumber(hasData)].img, 
-        hasData[randomPictureNumber(hasData)].img,
-        hasData[randomPictureNumber(hasData)].img, 
-        hasData[randomPictureNumber(hasData)].img,
-        hasData[randomPictureNumber(hasData)].img, 
-        hasData[randomPictureNumber(hasData)].img, 
-        hasData[randomPictureNumber(hasData)].img,
-        hasData[randomPictureNumber(hasData)].img]);
+    setHasData(data)
+    
     console.log(data)
   } 
   
   fetchData();
-  
+ 
 },[])
-  let content = null;
+  
+
+let content = null;
   let header = null;
 
   useEffect( ()=>{
     if(hasData.length > 1){
+      if(welcomePictures) {
+        setWelcomePictures([hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img,
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img,
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img, 
+        hasData[randomPictureNumber(hasData)].img,
+        hasData[randomPictureNumber(hasData)].img])
+      }
       let intervalId = setInterval(()=> {
         setWelcomePictures(prevValue =>{
+          if(prevValue == []) {
+            return [hasData[randomPictureNumber(hasData)].img, 
+            hasData[randomPictureNumber(hasData)].img, 
+            hasData[randomPictureNumber(hasData)].img,
+            hasData[randomPictureNumber(hasData)].img, 
+            hasData[randomPictureNumber(hasData)].img,
+            hasData[randomPictureNumber(hasData)].img, 
+            hasData[randomPictureNumber(hasData)].img, 
+            hasData[randomPictureNumber(hasData)].img,
+            hasData[randomPictureNumber(hasData)].img]
+          }
           return [hasData[randomPictureNumber(hasData)].img, 
           prevValue[0], 
           prevValue[1], 
@@ -53,14 +69,15 @@ useEffect( ()=>{
           prevValue[4], 
           prevValue[5],
           prevValue[6],
-          prevValue[7]]});
+          prevValue[7]]
+        });
       }, 2000);
       return () => {
         
         clearInterval(intervalId);
       }
     }
-  }, [2000])
+  }, [hasData, 2000])
 
 
 function randomPictureNumber(input) {
@@ -83,7 +100,7 @@ switch(currentScreen) {
 
     break;
     case REGISTER: {
-      content = hasData.map( info => <Register name= {info.name} img={info.img}
+      content = hasData.map( info => <Register className="RegisterContent" name= {info.name} img={info.img}
         nextScreen= {() => setCurrentScreen(INFO)}
         />)
     header = <Header 
