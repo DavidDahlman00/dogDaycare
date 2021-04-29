@@ -12,15 +12,13 @@ code {
     monospace;
 }
 
-
-/* .welcomeBody {
-  max-width: 500px;
-  max-height: 800px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-top: 1rem;
-} */
+button {
+  padding: 1%;
+  border: aliceblue 0.2rem solid;
+  border-radius: 1rem;
+  background-color: dodgerblue;
+  color: aliceblue;
+}
 
 .welcomeContent {
   margin-top: 6%;
@@ -31,6 +29,19 @@ code {
   box-shadow: 2px 2px 4px rgb(197, 197, 238);
 }
 
+@media (min-width: 400px) {
+  .welcomeContent {
+    display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) {
+  .welcomeContent {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  }
+}
 .welcomeContent img {
   height: 150px;
   width: 200px;
@@ -53,29 +64,41 @@ code {
   margin-top: 6%;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  border: honeydew 1rem solid ;
+  
   border-radius: 2%;
   box-shadow: 2px 2px 4px rgb(197, 197, 238);
 }
-
-.RegisterCard {
-  margin-top: 6%;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  border: honeydew 1rem solid ;
-  border-radius: 2%;
-  box-shadow: 2px 2px 4px rgb(197, 197, 238);
-}
-@media (min-width: 300px) {
-  .welcomeContent {
+@media (min-width: 400px) {
+  .RegisterContent {
     display: grid;
   grid-template-columns: repeat(2, 1fr);
   }
 }
-
-@media (min-width: 600px) {
-  .welcomeContent {
+@media (min-width: 800px) {
+  .RegisterContent {
     display: grid;
   grid-template-columns: repeat(3, 1fr);
   }
+}
+.RegisterCard {
+  margin-top: 6%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  transition: border 2s;
+  border: honeydew 1rem solid ;
+  border-radius: 2%;
+  box-shadow: 2px 2px 4px rgb(197, 197, 238);
+}
+
+.RegisterCard:hover {
+  margin-top: 6%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border: rgb(155, 207, 155) 1rem solid ;
+  border-radius: 2%;
+  box-shadow: 2px 2px 4px rgb(197, 197, 238);
+}
+.RegisterCard img {
+  height: 200px;
+  width: 200px;
 }

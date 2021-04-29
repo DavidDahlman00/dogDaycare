@@ -18,6 +18,7 @@ function App() {
   const url = "https://api.jsonbin.io/b/6087d57ff6655022c46d0611"
   const [hasData, setHasData] = useState([]);
   let [welcomePictures, setWelcomePictures] = useState([]);
+  let [dogKey, setDogKey] = useState("");
 useEffect( ()=>{
   async function fetchData(){
     const response =  await fetch(url);
@@ -50,7 +51,7 @@ let content = null;
       }
       let intervalId = setInterval(()=> {
         setWelcomePictures(prevValue =>{
-          if(prevValue == []) {
+          if(prevValue === []) {
             return [hasData[randomPictureNumber(hasData)].img, 
             hasData[randomPictureNumber(hasData)].img, 
             hasData[randomPictureNumber(hasData)].img,
@@ -100,9 +101,15 @@ switch(currentScreen) {
 
     break;
     case REGISTER: {
-      content = hasData.map( info => <Register className="RegisterContent" name= {info.name} img={info.img}
-        nextScreen= {() => setCurrentScreen(INFO)}
-        />)
+      content = <div className="RegisterContent">
+        {hasData.map( info => <Register  
+      key= {info.chipNumber} 
+      name= {info.name} img={info.img}
+        nextScreen= {() => {
+          setCurrentScreen(INFO)
+          setDogKey(info.chipNumber)}}
+        />)}
+      </div>
     header = <Header 
     goBack = {() => setCurrentScreen(WELCOME)}
     />
@@ -110,9 +117,14 @@ switch(currentScreen) {
  
     break;
     default: {
-      content = hasData.map( info => 
-      <Dogcard name= {info.name} img={info.img}  
-      sex={info.sex} breed={info.breed} chipNumber={info.chipNumber} />)
+      let dogDataArray = hasData.filter( dog => dog.chipNumber === dogKey)
+      let dogData = dogDataArray[0]
+      console.log("help", dogData)
+      content =  
+      <Dogcard present={dogData.present.toString()} age={dogData.age} name= {dogData.name} img={dogData.img}  
+      sex={dogData.sex} breed={dogData.breed} chipNumber={dogData.chipNumber} 
+      ownerFname={dogData.owner.name} ownerLname={dogData.owner.lastName} 
+      phone={dogData.owner.phoneNumber}/>
       header = <Header 
       goBack = {() => setCurrentScreen(REGISTER)}
     />
@@ -122,10 +134,10 @@ switch(currentScreen) {
   return (
     <div >
       {header}
-      {/* <Header /> */}
+     
       <div className="App">
       {content}
-      {/* //<Dogcard name= {data[0].name} img={data[0].img}  sex={data[0].sex} breed={data[0].breed} chipNumber={data[0].chipNumber} /> */}
+    
       </div>
       
       <Footer />

@@ -5,16 +5,16 @@ import Dogcard from './Dogcard';
 
 
 
-function Register({name, img, nextScreen}) {
+function Register(props){//({key, name, img, nextScreen}) {
 
     
 
 
     //<button onClick={nextScreen}>To dog</button>
-    return  <div className="RegisterCard" >
-    <h2>{name}</h2>
+    return  <div className="RegisterCard" onClick={props.nextScreen}>
+    <h2>{props.name}</h2>
     <div className="RegisterImage">
-       <img src= {img} alt="dog"/>
+       <img src= {props.img} alt="dog"/>
     </div>           
 </div>
 }
