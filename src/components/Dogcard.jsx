@@ -6,8 +6,13 @@ function Dogcard(props) {
     return <div className="DogCard" >
              <h2>{props.name}</h2>
              <div className="DogBody">
+                <div className="DogImageSide">
                 <img src= {props.img} alt="dog"/>
+                <button onClick={props.changePresent}>changePresent</button>
+                </div>
+                
                 <div className="info">
+                    
                     <p>present: {props.present}</p>
                     <p>age: {props.age}</p>
                     <p>sex: {props.sex}</p>

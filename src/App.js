@@ -12,7 +12,9 @@ import Footer from './components/Footer';
 
 function App() {
 
-  const WELCOME = 'welcome', REGISTER = 'register', INFO = 'info'
+  const WELCOME = 'welcome', REGISTER = 'register',
+   REGISTERPRESENT= 'registerpresent', REGISTERNOTPRESENT= 'registernotpresent',
+    INFO = 'info'
   const [currentScreen, setCurrentScreen] = useState(WELCOME);
   
   const url = "https://api.jsonbin.io/b/6087d57ff6655022c46d0611"
@@ -84,6 +86,13 @@ let content = null;
 function randomPictureNumber(input) {
   return Math.floor(Math.random() * input.length); 
 }
+
+function activateDog(id){
+ const tmpDoglist = hasData.filter( dog => dog.chipNumber === id);
+ const tmpDog = {...tmpDoglist[0], present:!tmpDoglist[0].present};
+ const newDogList = [tmpDog, ...hasData.filter( dog => dog.chipNumber !== id)];
+ setHasData(newDogList);
+}
  
 switch(currentScreen) {
   case WELCOME: {
@@ -96,6 +105,9 @@ switch(currentScreen) {
     />
     header = <Header 
       goBack = {false}
+      allDogs = {false}
+    presentDogs = {false}
+    notpresentDogs = {false}
     />
   }
 
@@ -112,6 +124,45 @@ switch(currentScreen) {
       </div>
     header = <Header 
     goBack = {() => setCurrentScreen(WELCOME)}
+    allDogs = {false}
+    presentDogs = {() => setCurrentScreen(REGISTERPRESENT)}
+    notpresentDogs = {() => setCurrentScreen(REGISTERNOTPRESENT)}
+    />
+    }
+    break;
+    case REGISTERPRESENT: {
+      content = <div className="RegisterContent">
+        {hasData.filter( dog => dog.present === true).map( info => <Register  
+      key= {info.chipNumber} 
+      name= {info.name} img={info.img}
+        nextScreen= {() => {
+          setCurrentScreen(INFO)
+          setDogKey(info.chipNumber)}}
+        />)}
+      </div>
+    header = <Header 
+    goBack = {() => setCurrentScreen(WELCOME)}
+    allDogs = {() => setCurrentScreen(REGISTER)}
+    presentDogs = {false}
+    notpresentDogs = {() => setCurrentScreen(REGISTERNOTPRESENT)}
+    />
+    }
+    break;
+    case REGISTERNOTPRESENT: {
+      content = <div className="RegisterContent">
+        {hasData.filter( dog => (dog.present === false)).map( info => <Register  
+      key= {info.chipNumber} 
+      name= {info.name} img={info.img}
+        nextScreen= {() => {
+          setCurrentScreen(INFO)
+          setDogKey(info.chipNumber)}}
+        />)}
+      </div>
+    header = <Header 
+    goBack = {() => setCurrentScreen(WELCOME)}
+    allDogs = {() => setCurrentScreen(REGISTER)}
+    presentDogs = {() => setCurrentScreen(REGISTERPRESENT)}
+    notpresentDogs = {false}
     />
     }
  
@@ -124,9 +175,12 @@ switch(currentScreen) {
       <Dogcard present={dogData.present.toString()} age={dogData.age} name= {dogData.name} img={dogData.img}  
       sex={dogData.sex} breed={dogData.breed} chipNumber={dogData.chipNumber} 
       ownerFname={dogData.owner.name} ownerLname={dogData.owner.lastName} 
-      phone={dogData.owner.phoneNumber}/>
+      phone={dogData.owner.phoneNumber} changePresent={()=> activateDog(dogKey)}/>
       header = <Header 
       goBack = {() => setCurrentScreen(REGISTER)}
+      allDogs = {false}
+      presentDogs = {false}
+      notpresentDogs = {false}
     />
     }
  

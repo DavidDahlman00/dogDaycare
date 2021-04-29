@@ -21,6 +21,7 @@
 }
 
 .App-header {
+  width: 100%;
   background-color: dodgerblue;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   font-family: "Montserrat", sans-serif;
@@ -29,13 +30,14 @@
   flex-direction: row;
   align-items:stretch;
   justify-content:space-between;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: white;
+  
 }
 
 .App-header button {
   display: flex;
-  
+  margin-right: 2%;
 }
 
 .App-link {
@@ -70,15 +72,23 @@ footer p {
   display: flex;
   flex-direction: column;
   padding: 5% 5%;
-  background-color: #81ecac;
+  background-color: rgb(5, 51, 66);
   margin: 5% 0;
-  height: 40%;
+  height: 80%;
   width: 80%;
-  box-shadow: 0 2px 5px #ccc;
+  box-shadow: 2px 2px 5px rgb(3, 25, 33);
   text-align: center;
   
 }
+.DogImageSide {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
 
+.DogImageSide button {
+  margin-top: 30%;
+  
+}
 
 .DogCard img {
   height: 200px;
@@ -90,7 +100,7 @@ footer p {
 
 .DogCard h2 {
   font-size: 2em;
-  color: #5f696c;
+  color: #6199aa;
   flex: 1;
   margin: 10% 20px 0;
   text-shadow: 1px 1px honeydew;

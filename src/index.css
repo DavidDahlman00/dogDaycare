@@ -19,6 +19,9 @@ button {
   background-color: dodgerblue;
   color: aliceblue;
 }
+button:hover {
+  opacity: 0.2;
+}
 
 .welcomeContent {
   margin-top: 6%;
