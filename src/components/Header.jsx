@@ -20,7 +20,7 @@ function Header({goBack, allDogs, presentDogs, notpresentDogs}) {
     };
 
     return  <div className="App-header">
-                Dogg'z DayCare.
+                Doggy DayCare.
                 {allButton}
                 {presentButton}
                 {notPresentButton}

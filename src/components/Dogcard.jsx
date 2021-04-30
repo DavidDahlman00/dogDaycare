@@ -1,14 +1,27 @@
 import React from "react";
 
 function Dogcard(props) {
+    let buttonText = 'CheckOut'
+  
+    function changeButtonText(){
+        if(props.present===true){
+             buttonText='CheckOut' 
+        }else {
+            buttonText='CheckIn'
+        }
+    }
+
     
-    
+    changeButtonText()
+
     return <div className="DogCard" >
              <h2>{props.name}</h2>
              <div className="DogBody">
                 <div className="DogImageSide">
                 <img src= {props.img} alt="dog"/>
-                <button onClick={props.changePresent}>changePresent</button>
+                <button onClick={props.changePresent}>
+                Check In/Out
+                </button>
                 </div>
                 
                 <div className="info">
