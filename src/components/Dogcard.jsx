@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Dogcard(props) {
     let buttonText = 'CheckOut'
@@ -10,6 +10,7 @@ function Dogcard(props) {
             buttonText='CheckIn'
         }
     }
+   
 
     
     changeButtonText()
@@ -21,6 +22,7 @@ function Dogcard(props) {
                 <img src= {props.img} alt="dog"/>
                 <button onClick={props.changePresent}>
                 Check In/Out
+                {()=> props.present? 'CheckOut' : 'CheckIn'}
                 </button>
                 </div>
                 

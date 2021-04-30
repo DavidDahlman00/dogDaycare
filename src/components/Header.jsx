@@ -20,11 +20,14 @@ function Header({goBack, allDogs, presentDogs, notpresentDogs}) {
     };
 
     return  <div className="App-header">
-                Doggy DayCare.
+                {maybeButton}
+                <h1>Doggy DayCare.</h1>
+                <div className="pressent">
                 {allButton}
                 {presentButton}
-                {notPresentButton}
-                {maybeButton}
+                {notPresentButton}  
+                </div>
+                
             </div> 
 }
 export default Header;
